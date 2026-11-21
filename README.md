@@ -117,4 +117,4 @@ School of Electrical, Computer and Energy Engineering, Arizona State University,
 
 ## License
 
-<!-- Choose a license (e.g., MIT) and add a LICENSE file -->
+The code is released under the [MIT License](LICENSE). Datasets and trained models are subject to the licenses of the datasets they come from.
