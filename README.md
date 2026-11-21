@@ -1,45 +1,116 @@
-# Maritime6 fresh dataset workspace
+# Maritime Perception on the Edge: Raspberry Pi 5 + Hailo-8L + FPGA
 
-Status: **NOT RELEASED. No new training or HEF has been produced.**
+Real-time maritime perception for small surface vessels on low-cost edge hardware.
+Four INT8 neural networks run on one **Hailo-8L NPU** attached to a **Raspberry Pi 5**, and the object
+detector's post-processing (DFL decoding, box decoding, NMS) can be offloaded to a **DE10-Lite FPGA**
+(Intel MAX 10) over SPI, **bit-exact** with a software reference.
 
-This is the single source of truth for the replacement dataset. Start with [STATUS.md](STATUS.md). Prior v4/v5 data and checkpoints remain in `D:/Projects/maritime-perception`; none are overwritten.
+![System overview](docs/images/system_overview.png)
 
-The requested goal is six classes, 1,000+ distinct images per class, boat/shore priority, 90% mAP@0.50 as a measured goal, followed by Hailo-8L deployment. Public dataset sizes and structural validity are not guarantees of correct complete labels or of accuracy.
+## What the system does
 
-- [Source research and selection](sources/SOURCE_RESEARCH.md)
-- [Approved class definitions](configs/taxonomy.json)
-- [Annotation review and release procedure](sources/REVIEW_AND_RELEASE.md)
-- [Prepared Sol handoff](sources/SOL_HANDOFF.md)
-- [Hailo-8L deployment](sources/HAILO_DEPLOYMENT.md)
-- `reports/`: native inventories, hashes, duplicate findings and visual sample findings.
-- `raw/`: immutable publisher files; candidates only.
-- `staging/`: merged unreleased candidates, explicit corrections and image-specific visual observations. Start with [the actual merge report](reports/MERGE_STATUS.md).
-- `releases/`: populated only after release gates pass, currently empty.
+| Network | Task | Input | Output |
+|---|---|---|---|
+| **Detector** (YOLOv8s) | Find obstacles: powered vessel, sailboat, small craft, navigation marker, person in water, other obstacle | 960×960 | Boxes + classes |
+| **Water segmentation** (ResNet18) | Label every pixel as water, sky, or obstacle | 640×384 | Mask |
+| **Horizon** (ResNet18) | Locate the water-edge line | 640×384 | Line (left/right height) |
+| **Sea state** (ResNet18) | Estimate the sea state from a water patch below the horizon | 224×224 | Beaufort 1–8 → calm / moderate / rough |
 
-## Reproduce the current audit on Windows
+The horizon line feeds a **horizon gate** that drops detections above the water edge (birds, clouds,
+objects on shore). The gate switches itself off when the water mask disagrees with the line, for example
+when the camera rolls strongly or looks at the sky.
 
-Use the existing Python environment; these audits need NumPy, Pillow, and SciPy (only SMD metadata). No GPU is needed.
+![Example outputs](docs/images/perception_outputs.jpg)
 
-```powershell
-cd D:\Projects\maritime-dataset
-& D:\Projects\maritime-perception\.venv\Scripts\python.exe scripts/acquire.py --profile research
-& D:\Projects\maritime-perception\.venv\Scripts\python.exe scripts/acquire.py --profile surface_debris
-& D:\Projects\maritime-perception\.venv\Scripts\python.exe scripts/audit_candidates.py debris
-& D:\Projects\maritime-perception\.venv\Scripts\python.exe scripts/audit_candidates.py waterscenes
-& D:\Projects\maritime-perception\.venv\Scripts\python.exe scripts/audit_candidates.py existing
-& D:\Projects\maritime-perception\.venv\Scripts\python.exe -m unittest discover -s tests -v
-```
+*Water cyan, sky purple, obstacles red, horizon yellow, sea-state patch white. (a) Ship detected with the
+horizon gate active. (b) Strong camera roll: the horizon disagrees with the mask, so the gate turns off and
+both vessels are kept. (c) Coastline segmented as obstacle.*
 
-Additional verified publisher acquisition profiles: `oostpoort` (~1.08 GB), `instream_wood_initial` (~1.05 GB). `instream_wood_all` is ~22 GB and is optional; avoid downloading the full collection until metadata/sample review supports it. Downloads resume `.part` files and verify the publisher MD5 when supplied. Read `configs/downloads.json` for exact URLs/sizes/checksums.
+## Results
 
-On Sol, use a **new** `/scratch/smurug25/maritime-dataset` directory. These same relative scripts work there after NumPy/Pillow installation; pass `--old /scratch/smurug25/maritime-perception` to `audit_candidates.py existing`. Do not submit a GPU training job for this workspace yet.
+### Accuracy on held-out test sets (INT8 on the Hailo-8L vs. FP32)
 
-## Current review workflow
+| Network | Test set | Metric | FP32 | **INT8 (Hailo-8L)** |
+|---|---|---|---|---|
+| Detector | 537 images | mAP50 / mAP50-95 | 0.807 / 0.550 | **0.799 / 0.537** |
+| Water segmentation | LaRS, 293 images | mean IoU | 0.955 | **0.955** |
+| Horizon | LaRS, 232 images | mean error | 7.84 px | **9.36 px** |
+| Sea state | UNIRI-SeaState, 2,022 patches | accuracy | 0.770 | **0.772** |
 
-The native adapters are `scripts/stage_candidates.py`; they retain ambiguous objects, record source/image hashes and never create a training approval. `scripts/render_review.py` renders full frames and every supplied object crop. Actual observations are bound to the examined candidate, taxonomy, image and rendered evidence hashes in `staging/visual_observations.jsonl`. Explicit corrections preserve their unchanged parent/source/image provenance in `staging/corrections/`.
+INT8 quantization keeps 99% of the detector's mAP50 and costs nothing measurable for water segmentation
+and sea state. (Same post-processing and evaluation code for both columns.)
 
-After adding a separately inspected review batch, run `python scripts/merge_candidates.py` to update the single merged inventory and readable coverage report. It rejects stale review/correction evidence and quarantines all members of conflicting exact duplicates. The visual observations are not a final split/dedup approval. Do not run the immutable first-session recording script again or generate bulk approvals from native class names/model confidence.
+### Speed on the Raspberry Pi 5 + Hailo-8L
 
-`openimages_people` candidates deliberately have no automatically mapped swimmer boxes. Swimwear/cap labels and generic person boxes do not establish that a person is in water. A native swimming-pool box is an exclusion signal; its absence is not proof of open water. Preserve all supplied co-occurring labels, the original metadata, author and license, and review the full frame.
+| Configuration | Time per frame | Frame rate |
+|---|---|---|
+| Detector only (letterbox + NPU + CPU post-processing) | 36.7 ms | 27.2 FPS |
+| All four networks, every frame | 94.7 ms (≈ 80 ms on the NPU) | **10.6 FPS** |
 
-The original Open Images Canoe and people pools overlap. Staging checks matching image bytes and full native annotations and keeps one canonical image record; overlapping photos do not increase coverage twice.
+### FPGA post-processing (DE10-Lite, MAX 10, 100 MHz)
+
+The Pi keeps only the anchors that pass the score threshold (about 11 of 18,900 per frame after INT8
+quantization) and sends them to the FPGA, which returns the final boxes.
+
+| | Result |
+|---|---|
+| Resources | 29,081 LEs (58%), 387 kbit memory (23%), timing met at 100 MHz |
+| Correctness | Bit-exact with the golden model on 30/30 live frames; 115,275 SPI transactions with 0 errors |
+| FPGA compute | **3.68 µs** median per frame |
+| SPI link (20 MHz) | 0.556 ms median per frame |
+| In the full system | 1,200 frames on two videos, 0 link errors |
+
+![Post-processing latency](docs/images/postprocessing_latency.png)
+
+**Key finding:** the FPGA computes a frame in microseconds, but the SPI link (≈150× longer) sets the cost.
+The FPGA path is 2.3× faster than the Python post-processing, while an optimized C++ path that also
+thresholds first is faster still. In the full system the NPU, not post-processing, limits the frame rate.
+An FPGA post-processor pays off when the host CPU is weak or busy, when deterministic and bit-exact
+results are required, or with a faster link than SPI.
+
+## Hardware
+
+- Raspberry Pi 5 with the Hailo-8L AI HAT (PCIe)
+- Terasic DE10-Lite (Intel MAX 10 10M50DAF484C7G), connected to the Pi's SPI0 with five wires plus a
+  `RESULT_READY` line
+- Training on the ASU Sol cluster (NVIDIA A100) and a laptop GPU
+
+## Repository layout
+
+| Folder | Contents |
+|---|---|
+| `scripts/` | Dataset building, auditing, and detector training |
+| `configs/` | Dataset and training configurations |
+| `scene/train/` | Training scripts for the water, horizon, and sea-state networks |
+| `scene/deploy/` | ONNX export, Hailo compilation, Pi runner, and test-set evaluation for the scene networks |
+| `hailo/` | Detector compilation for the Hailo-8L and the Raspberry Pi scripts (baseline, FPGA client, Mode B protocol, golden model) |
+| `sol/` | Job scripts for the ASU Sol cluster |
+| `tests/` | Tests |
+
+## Workflow
+
+1. **Build the datasets and train** the detector and the scene networks (`scripts/`, `scene/train/`, `sol/`).
+2. **Export to ONNX and compile to HEF** with the Hailo Dataflow Compiler (`hailo/`, `scene/deploy/`).
+3. **Run on the Pi**: detector baseline, the four-network system, and the test-set evaluation
+   (`hailo/pi/`, `scene/deploy/`).
+4. **FPGA post-processing**: the Pi client sends candidates to the DE10-Lite over SPI and checks every
+   reply bit-exactly against the golden model (`hailo/pi/pi_mode_b_client.py`).
+
+Exact commands are in `hailo/README.md`, `hailo/pi/README_MODE_B_CLIENT.md`, and `scene/deploy/README_SCENE_DEPLOY.md`.
+
+## Datasets
+
+Datasets are **not** included in this repository; download them from their sources and follow their licenses.
+
+- **LaRS** maritime obstacle detection dataset (water and horizon labels): https://lojzezust.github.io/lars-dataset/
+- **UNIRI-SeaState** (sea state, Beaufort 1–8): https://doi.org/10.5281/zenodo.19592919
+- **Singapore Maritime Dataset** (demonstration videos): https://sites.google.com/site/dilipprasad/home/singapore-maritime-dataset
+- The six-class detector dataset was assembled from public maritime datasets (see `configs/`).
+
+## Team
+
+<!-- Add the team members' names here -->
+
+## License
+
+<!-- Choose a license (e.g., MIT) and add a LICENSE file -->
