@@ -109,7 +109,11 @@ Datasets are **not** included in this repository; download them from their sourc
 
 ## Team
 
-<!-- Add the team members' names here -->
+- Saravanan Murugan
+- Jia Wei
+- Prince Coffie
+
+School of Electrical, Computer and Energy Engineering, Arizona State University, Tempe, AZ, USA
 
 ## License
 
