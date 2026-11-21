@@ -1,0 +1,75 @@
+{
+ "water": {
+  "images": 293,
+  "mean_iou": 0.9554550114333048,
+  "iou": {
+   "obstacle": 0.9315694823758934,
+   "water": 0.9622074851266194,
+   "sky": 0.9725880667974017
+  }
+ },
+ "horizon": {
+  "images": 232,
+  "mean_error_px": 7.840366792026642,
+  "within_10px": 0.8017241379310345
+ },
+ "seastate": {
+  "single": {
+   "images": 2022,
+   "accuracy": 0.7695351137487636,
+   "balanced_accuracy": 0.7865775034293553,
+   "per_class": {
+    "calm": 0.8822222222222222,
+    "moderate": 0.745,
+    "rough": 0.7325102880658436
+   },
+   "confusion": [
+    [
+     397,
+     47,
+     6
+    ],
+    [
+     79,
+     447,
+     74
+    ],
+    [
+     0,
+     260,
+     712
+    ]
+   ],
+   "beaufort_mean_abs_error": 0.9181622748057511
+  },
+  "flip_tta": {
+   "images": 2022,
+   "accuracy": 0.7952522255192879,
+   "balanced_accuracy": 0.8094238683127571,
+   "per_class": {
+    "calm": 0.9066666666666666,
+    "moderate": 0.75,
+    "rough": 0.7716049382716049
+   },
+   "confusion": [
+    [
+     408,
+     36,
+     6
+    ],
+    [
+     74,
+     450,
+     76
+    ],
+    [
+     0,
+     222,
+     750
+    ]
+   ],
+   "beaufort_mean_abs_error": 0.8876069030141545
+  }
+ },
+ "note": "laptop, ONNX Runtime FP32, same ONNX files as the HEFs (sha256 fe4d04e8 / 2f40d1f0 / 71e7c1bd)"
+}

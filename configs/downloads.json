@@ -1,0 +1,242 @@
+{
+  "files": [
+    {
+      "id": "iwhr_package1",
+      "path": "raw/iwhr/IWHR_AI_Lable_Floater_V1-package1.zip",
+      "url": "https://ndownloader.figshare.com/files/50111817",
+      "bytes": 1016973959,
+      "md5": "423a322836b400073aa5209367069df1",
+      "profiles": [
+        "surface_debris"
+      ],
+      "sha256": "b96a3e9da38934b938ca34d12f8a8bd40f5641755ed7b6fc66515bb256a3b716"
+    },
+    {
+      "id": "iwhr_package2",
+      "path": "raw/iwhr/IWHR_AI_Lable_Floater_V1-package2.zip",
+      "url": "https://ndownloader.figshare.com/files/50113386",
+      "bytes": 1219796963,
+      "md5": "54cba395e4b37330c1a0d5aa0d0ee5ed",
+      "profiles": [
+        "surface_debris"
+      ],
+      "sha256": "7af8f17c2e555f19d648d6f01bbd5659e90dfe6b68e24a8344f05416434fe6ec"
+    },
+    {
+      "id": "dsix",
+      "path": "raw/dsix/D_six.zip",
+      "url": "https://zenodo.org/api/records/15195086/files/D_six.zip/content",
+      "bytes": 387194217,
+      "md5": "8dda31e32c73b9901475af51a0a4dedb",
+      "profiles": [
+        "surface_debris"
+      ],
+      "sha256": "50917f4084e8d55c308270b136ab417a1593a6e4f5c76e5265279e78dfdb96e0"
+    },
+    {
+      "id": "mobdrone_annotations",
+      "path": "raw/mobdrone/annotations_5_custom_classes.json",
+      "url": "https://zenodo.org/api/records/5996890/files/annotations_5_custom_classes.json/content",
+      "bytes": 60485062,
+      "md5": "11f578ff9ede473005d72ccccd0ae82b",
+      "profiles": [
+        "research"
+      ],
+      "sha256": "34d4861b19420096b1396e5805d5988ac2a08cd4ff76ea485b3d889ea12d4f89"
+    },
+    {
+      "id": "waterscenes_detection.zip",
+      "path": "raw/waterscenes/detection.zip",
+      "url": "https://drive.usercontent.google.com/download?id=1FUKEI43Ns5uJ-wZycMKgtC3p6BoGJPiY&export=download&confirm=t",
+      "bytes": 42134229,
+      "md5": null,
+      "profiles": [
+        "research"
+      ],
+      "sha256": "a7367c3a02fdfb73c9be438c40d3615ebae94787077031b658ed79a9b398fdf1"
+    },
+    {
+      "id": "waterscenes_information_list.csv",
+      "path": "raw/waterscenes/information_list.csv",
+      "url": "https://drive.usercontent.google.com/download?id=1RSTlasD52PwIRwjjOv2l3b02f7DkCPN6&export=download&confirm=t",
+      "bytes": 2308461,
+      "md5": null,
+      "profiles": [
+        "research"
+      ],
+      "sha256": "ae38971a1603aab539954a5abb8fcd734160a7b420fd3f81b73b079d4ef03db6"
+    },
+    {
+      "id": "waterscenes_test.txt",
+      "path": "raw/waterscenes/test.txt",
+      "url": "https://drive.usercontent.google.com/download?id=1bCC1fHbuf2XBWU-K1ZKylv0AMJjetrFw&export=download&confirm=t",
+      "bytes": 102828,
+      "md5": null,
+      "profiles": [
+        "research"
+      ],
+      "sha256": "8ccc075b48aa2023707e99290c9ef3d3b649f9862b8a2b5283917090259f2bd5"
+    },
+    {
+      "id": "waterscenes_train.txt",
+      "path": "raw/waterscenes/train.txt",
+      "url": "https://drive.usercontent.google.com/download?id=10nb9PPrbxyKDDTfWRO3jAgHSzs2nwIlf&export=download&confirm=t",
+      "bytes": 719796,
+      "md5": null,
+      "profiles": [
+        "research"
+      ],
+      "sha256": "d1d64ed09bf64ad61d0d693fd386b48b047857bad9cc5c40f54a76c6fcc51c50"
+    },
+    {
+      "id": "waterscenes_val.txt",
+      "path": "raw/waterscenes/val.txt",
+      "url": "https://drive.usercontent.google.com/download?id=1Q1Zr_xYm0TfseIWjHB_ipWC-PkE_M54y&export=download&confirm=t",
+      "bytes": 205656,
+      "md5": null,
+      "profiles": [
+        "research"
+      ],
+      "sha256": "72c1a0d1b6a01607b8376e05d2351cacabfd47df45695b709141a0ab0022b5d1"
+    },
+    {
+      "id": "oostpoort_labels_txt.zip",
+      "path": "raw/oostpoort/labels_txt.zip",
+      "url": "https://zenodo.org/api/records/13730298/files/labels_txt.zip/content",
+      "bytes": 125686,
+      "md5": "00782c7df32335c0028f7498515bd3ad",
+      "profiles": [
+        "oostpoort"
+      ],
+      "sha256": "b88ae33c7b9e7167c536f8c0ce962056f714e1f8b824c5cfcfff684f2a3631ff"
+    },
+    {
+      "id": "oostpoort_Oostpoort Dataset.xlsx",
+      "path": "raw/oostpoort/Oostpoort Dataset.xlsx",
+      "url": "https://zenodo.org/api/records/13730298/files/Oostpoort%20Dataset.xlsx/content",
+      "bytes": 1699464,
+      "md5": "d9fb287d0f1a963b4a12bb329694b6aa",
+      "profiles": [
+        "oostpoort"
+      ],
+      "sha256": "d2a8c982b38383a2796bcdb5a71108386160c53bc260883d70ca1ba35fab19cc"
+    },
+    {
+      "id": "oostpoort_images.zip",
+      "path": "raw/oostpoort/images.zip",
+      "url": "https://zenodo.org/api/records/13730298/files/images.zip/content",
+      "bytes": 1074927151,
+      "md5": "7f4eed5c6e16758383d8630335ab45c4",
+      "profiles": [
+        "oostpoort"
+      ],
+      "sha256": "9078ae84537847cee67561935ca44060b350b518ed49a0e0d0481ce580329330"
+    },
+    {
+      "id": "oostpoort_classes.txt",
+      "path": "raw/oostpoort/classes.txt",
+      "url": "https://zenodo.org/api/records/13730298/files/classes.txt/content",
+      "bytes": 6,
+      "md5": "6909166886146e88b35c26f368071a04",
+      "profiles": [
+        "oostpoort"
+      ],
+      "sha256": "ff4a41f6aa62a1c97c05f417189213be3749d73faf7fd6b3bc4481c1df9f2aa7"
+    },
+    {
+      "id": "instream_wood_20201127_rotated.zip",
+      "path": "raw/instream_wood/20201127_rotated.zip",
+      "url": "https://zenodo.org/api/records/10869058/files/20201127_rotated.zip/content",
+      "bytes": 1049427898,
+      "md5": "3abe87281da8610527c37015dbfdfe92",
+      "profiles": [
+        "instream_wood_all",
+        "instream_wood_initial"
+      ],
+      "sha256": "a06f771083a875a0545ff6e29f548db1b5aced63f62a7236ca43cfa94c60df3f"
+    },
+    {
+      "id": "instream_wood_20201203_rotated.zip",
+      "path": "raw/instream_wood/20201203_rotated.zip",
+      "url": "https://zenodo.org/api/records/10869058/files/20201203_rotated.zip/content",
+      "bytes": 3884921815,
+      "md5": "54827f6fbfec6ae87825a5808053014a",
+      "profiles": [
+        "instream_wood_all"
+      ]
+    },
+    {
+      "id": "instream_wood_20201126_rotated.zip",
+      "path": "raw/instream_wood/20201126_rotated.zip",
+      "url": "https://zenodo.org/api/records/10869058/files/20201126_rotated.zip/content",
+      "bytes": 1087516295,
+      "md5": "3593935df65319d4d165153b0aa528dc",
+      "profiles": [
+        "instream_wood_all"
+      ]
+    },
+    {
+      "id": "instream_wood_20201117_rotated.zip",
+      "path": "raw/instream_wood/20201117_rotated.zip",
+      "url": "https://zenodo.org/api/records/10869058/files/20201117_rotated.zip/content",
+      "bytes": 7401030326,
+      "md5": "6107f57eb5ac04adde65c0e809332bf4",
+      "profiles": [
+        "instream_wood_all"
+      ]
+    },
+    {
+      "id": "instream_wood_20201119_rotated.zip",
+      "path": "raw/instream_wood/20201119_rotated.zip",
+      "url": "https://zenodo.org/api/records/10869058/files/20201119_rotated.zip/content",
+      "bytes": 6464855608,
+      "md5": "64408cdd934196953309d4aaccaee0ba",
+      "profiles": [
+        "instream_wood_all"
+      ]
+    },
+    {
+      "id": "instream_wood_extra_own_data.zip",
+      "path": "raw/instream_wood/extra_own_data.zip",
+      "url": "https://zenodo.org/api/records/10869058/files/extra_own_data.zip/content",
+      "bytes": 2151563072,
+      "md5": "9f69d822a6480af815a01957c42d4145",
+      "profiles": [
+        "instream_wood_all"
+      ]
+    },
+    {
+      "id": "openimages_train_bbox",
+      "path": "raw/openimages/oidv6-train-annotations-bbox.csv",
+      "url": "https://storage.googleapis.com/openimages/v6/oidv6-train-annotations-bbox.csv",
+      "bytes": 2258447590,
+      "md5": null,
+      "profiles": [
+        "accessible_alternatives"
+      ],
+      "sha256": "dfc9637907a6b105f87e435bac91a5ee9b29af3ff8391168f86c1d63879786b6"
+    },
+    {
+      "id": "modd2_annotations_raw",
+      "path": "raw/modd2/MODD2_annotations_v2.zip",
+      "url": "https://data.vicos.si/borja/modd2_dataset/MODD2_annotations_v2.zip",
+      "bytes": 6011217,
+      "md5": null,
+      "profiles": [
+        "accessible_alternatives"
+      ],
+      "sha256": "6a4cabbb48c2f72a02889c07f49019d5c5cf2584d28f40804f0ebefe7edce4dc"
+    },
+    {
+      "id": "openimages_train_image_metadata",
+      "path": "raw/openimages/train-images-boxable-with-rotation.csv",
+      "url": "https://storage.googleapis.com/openimages/2018_04/train/train-images-boxable-with-rotation.csv",
+      "bytes": 638407721,
+      "md5": null,
+      "profiles": [
+        "openimages_provenance"
+      ],
+      "sha256": "05f3d68dbbb03728d1a37e51479f4f35c062b871e1a6cae8c4cefbe0e0c80ed0"
+    }
+  ]
+}

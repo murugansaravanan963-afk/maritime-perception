@@ -1,0 +1,11 @@
+{
+  "updated_local_date": "2026-10-22",
+  "baidu_access": false,
+  "user_instruction": "Use other sources",
+  "acquisition_policy": "Use verified public publisher/CVDF downloads and existing local data. Baidu-only candidates are unavailable unless a verified public original mirror is found.",
+  "unavailable_through_advertised_channel": [
+    "VND",
+    "ShipsMOT"
+  ],
+  "publisher_contact_submissions_authorized": false
+}

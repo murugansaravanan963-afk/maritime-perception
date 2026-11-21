@@ -1,0 +1,39 @@
+{
+  "min_primary_train_images_per_class": 100,
+  "min_primary_val_images_per_class": 50,
+  "min_primary_test_images_per_class": 50,
+  "min_train_capture_groups_per_class": 3,
+  "min_eval_capture_groups_per_class": 2,
+  "max_train_class_image_ratio": 1.5,
+  "max_fraction_of_class_from_one_train_group": 0.35,
+  "primary_viewpoints": [
+    "boat",
+    "shore",
+    "surface"
+  ],
+  "allowed_source_splits": {
+    "train": [
+      "train",
+      "unspecified"
+    ],
+    "val": [
+      "train",
+      "val",
+      "unspecified"
+    ],
+    "test": [
+      "train",
+      "val",
+      "test",
+      "unspecified"
+    ]
+  },
+  "count_unit": "Distinct, real source images after duplicate review; no copied or augmented variants count. Source recordings stay in a single split.",
+  "auxiliary_aerial_images_do_not_satisfy_primary_quotas": true,
+  "model_target_map50": 0.9,
+  "status": "Training coverage aligned to user: >=1000 real training images/class overall; >=60% primary surface images overall; >=100 primary training positives/class and >=50 primary positives/class per independent holdout are curator quality targets. Not released.",
+  "min_train_images_per_class": 1000,
+  "min_primary_fraction_of_training_images": 0.6,
+  "policy_revision_reason": "Remove the assistant-imposed requirement of 1000 primary-only training images per class. Retain measured surface-camera coverage and evaluation; no automatic label approval or evidence waivers.",
+  "surface_viewpoint_definition": "A visually confirmed surface-camera view where boat versus shore cannot be established from one photo. Requires explicit viewpoint_basis; excludes aerial, pool, underwater and unknown views."
+}

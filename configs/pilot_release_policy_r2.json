@@ -1,0 +1,49 @@
+{
+  "schema": "maritime6-pilot-release-0",
+  "purpose": "First trainable release built only from images whose full frame passed six-class annotation review. Used to measure real held-out mAP and find which classes need more data. It does NOT satisfy the r1 policy in release_policy.json (>=1000 training images per class), which stays unchanged. r2: adds source_balance so every class/source with enough positives keeps >=50% in train and contributes ~15% to each of val and test (whole units only).",
+  "eval_viewpoints": [
+    "boat",
+    "shore",
+    "surface"
+  ],
+  "train_only_viewpoints": [
+    "aerial",
+    "unknown"
+  ],
+  "train_only_sources": [
+    "iala10_original"
+  ],
+  "train_only_reason": "Aerial/unknown views are not the deployment domain. IALA10 images are close-up buoy crops from re-published web photos; they help training but would make held-out marker AP look easier than real boat/shore scenes.",
+  "val_fraction_target": 0.15,
+  "test_fraction_target": 0.15,
+  "min_primary_val_images_per_class": 25,
+  "min_primary_test_images_per_class": 25,
+  "min_eval_groups_per_class": 2,
+  "near_duplicate_rule": "Capture groups linked by a visually confirmed cross-group duplicate are merged into one split unit. Candidate pairs come from 24x24 RGB thumbnail correlation and dHash; see reports/pilot_r0/near_duplicates.json.",
+  "allowed_source_splits": {
+    "train": [
+      "train",
+      "unspecified",
+      "publisher_unsplit"
+    ],
+    "val": [
+      "train",
+      "val",
+      "unspecified",
+      "publisher_unsplit"
+    ],
+    "test": [
+      "train",
+      "val",
+      "test",
+      "unspecified",
+      "publisher_unsplit"
+    ]
+  },
+  "seed": 20261025,
+  "source_balance": {
+    "min_source_positives": 20,
+    "min_train_share": 0.5,
+    "weight": 1.0
+  }
+}

@@ -1,0 +1,6 @@
+# Use a supported CUDA-enabled PyTorch environment on Sol; preflight checks CUDA.
+# Keep this separate from the Hailo DFC/Model Zoo compilation environment.
+ultralytics==8.3.235
+numpy==2.2.6
+Pillow==11.3.0
+PyYAML==6.0.2

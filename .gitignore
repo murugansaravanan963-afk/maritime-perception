@@ -1,0 +1,12 @@
+﻿*.pt
+*.onnx
+*.hef
+*.har
+*.zip
+*.tar*
+*.npz
+__pycache__/
+data/
+runs*/
+weights/
+*.log

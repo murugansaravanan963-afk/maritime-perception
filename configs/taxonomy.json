@@ -1,0 +1,30 @@
+{
+  "version": "maritime6-surface-1",
+  "approved_scope": "boat-mounted or shore RGB; user approved water-obstacle definition 2026-10-22",
+  "names": [
+    "powered_vessel",
+    "sailboat",
+    "small_craft",
+    "navigation_marker",
+    "person_in_water",
+    "other_obstacle"
+  ],
+  "definitions": {
+    "powered_vessel": "Motorized watercraft, including motorboats, powered ships and jet skis. Generic boat/vessel labels alone do not establish this class.",
+    "sailboat": "Watercraft with identifiable sailing rig; remains sailboat when sails are furled.",
+    "small_craft": "Nonmotorized kayak, canoe, rowboat, paddleboard or surfboard on water. Motorboats and jet skis belong to powered_vessel.",
+    "navigation_marker": "Waterway navigation buoy or marker. A floating lifebuoy/rescue aid is other_obstacle.",
+    "person_in_water": "A person physically in the water, swimming, floating or partially submerged. Exclude people aboard craft, standing on boards, on shore or on structures.",
+    "other_obstacle": "Floating debris, logs, unattached rescue equipment and animals in the water. Exclude flying birds and permanent shore/port structures."
+  },
+  "out_of_scope": [
+    "flying birds/aircraft",
+    "people aboard craft or on shore",
+    "piers, docks, bridges and shore structures",
+    "sky, water, wakes, reflections, glare"
+  ],
+  "unresolved_policy": "Whole-image quarantine or full-frame audited relabeling. Never guess generic boat/person/other labels and never drop unresolved target objects into background.",
+  "box_policy": "Tight axis-aligned box around visible object extent; include the vessel and its aboard occupants as one craft box where source convention supports it. Do not box reflections or wakes. Record source convention; quarantine incompatible boxes for correction.",
+  "coordinate_policy": "Canonical zero-origin continuous xyxy with exclusive upper extent; no silent clipping, shrinking, small-object dropping or box union. Source conversions must have an explicit tested convention.",
+  "class_id_stability": "The names list is the immutable deployment order."
+}

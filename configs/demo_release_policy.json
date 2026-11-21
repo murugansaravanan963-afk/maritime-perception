@@ -1,0 +1,41 @@
+{
+  "schema": "maritime6-pilot-release-0",
+  "purpose": "Class-demo release: random image-level 80/10/10 split; runs of 12 consecutive frames and practically identical frames (24x24 thumbnail correlation >= 0.99) kept together; all viewpoints evaluated.",
+  "split_mode": "random_frame_runs",
+  "eval_viewpoints": [
+    "boat",
+    "shore",
+    "surface",
+    "aerial",
+    "unknown"
+  ],
+  "train_only_viewpoints": [],
+  "train_only_sources": [],
+  "val_fraction_target": 0.1,
+  "test_fraction_target": 0.1,
+  "min_primary_val_images_per_class": 10,
+  "min_primary_test_images_per_class": 10,
+  "min_eval_groups_per_class": 1,
+  "near_duplicate_rule": "Capture groups linked by a visually confirmed cross-group duplicate are merged into one split unit. Candidate pairs come from 24x24 RGB thumbnail correlation and dHash; see reports/pilot_r0/near_duplicates.json.",
+  "allowed_source_splits": {
+    "train": [
+      "train",
+      "unspecified",
+      "publisher_unsplit"
+    ],
+    "val": [
+      "train",
+      "val",
+      "unspecified",
+      "publisher_unsplit"
+    ],
+    "test": [
+      "train",
+      "val",
+      "test",
+      "unspecified",
+      "publisher_unsplit"
+    ]
+  },
+  "seed": 20261027
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "maritime6-pilot-release-0",
+  "purpose": "Class-demo release d2: random image-level 80/10/10 split. Recordings cut into runs of 12 consecutive frames; fixed cameras (near-identical frames all day) kept whole; cross-source duplicates kept together; runs assigned by seeded balancing so each class/source spreads over val and test. Replaces d1, whose identical-frame merge chained videos into 100-588-frame blocks.",
+  "split_mode": "random_frame_runs",
+  "eval_viewpoints": [
+    "boat",
+    "shore",
+    "surface",
+    "aerial",
+    "unknown"
+  ],
+  "train_only_viewpoints": [],
+  "train_only_sources": [],
+  "val_fraction_target": 0.1,
+  "test_fraction_target": 0.1,
+  "min_primary_val_images_per_class": 10,
+  "min_primary_test_images_per_class": 10,
+  "min_eval_groups_per_class": 3,
+  "near_duplicate_rule": "Capture groups linked by a visually confirmed cross-group duplicate are merged into one split unit. Candidate pairs come from 24x24 RGB thumbnail correlation and dHash; see reports/pilot_r0/near_duplicates.json.",
+  "allowed_source_splits": {
+    "train": [
+      "train",
+      "unspecified",
+      "publisher_unsplit"
+    ],
+    "val": [
+      "train",
+      "val",
+      "unspecified",
+      "publisher_unsplit"
+    ],
+    "test": [
+      "train",
+      "val",
+      "test",
+      "unspecified",
+      "publisher_unsplit"
+    ]
+  },
+  "seed": 20261027,
+  "merge_identical_runs": false,
+  "assignment": "balanced",
+  "source_balance": {
+    "min_source_positives": 20,
+    "min_train_share": 0.6,
+    "weight": 1.0
+  },
+  "whole_unit_groups": [
+    "proposal:wood_extra:Rhone_20220520",
+    "proposal:wood_extra:Inn_202306",
+    "proposal:wood_extra:VDN_site_20210509",
+    "proposal:instream_wood:instream_wood:20201127",
+    "site:oostpoort:fixed_camera",
+    "review_guard:seaclips:fixed_fortification_site"
+  ]
+}
