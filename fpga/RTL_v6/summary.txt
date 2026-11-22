@@ -1,0 +1,37 @@
+source: fpga_vectors
+model: 960x960, 6 classes, 18900 anchors, grids [(120, 120), (60, 60), (30, 30)]
+quant: {'bbox_scale': 0.17380952835083008, 'bbox_zp': 171.0, 'score_scale': 0.003921568859368563, 'score_zp': 0.0, 'qbits': 8, 'sbits': 8}
+SCORE_Q_THR=64  IOU=9/20  LUT_DEPTH=65
+
+frame_0000: cand=   18 dets=  1  OK: 1 dets match, max coord error 0.068 px
+frame_0001: cand=   13 dets=  2  OK: 2 dets match, max coord error 0.062 px
+frame_0002: cand=   20 dets=  3  OK: 3 dets match, max coord error 0.062 px
+frame_0003: cand=    5 dets=  1  OK: 1 dets match, max coord error 0.030 px
+frame_0004: cand=   14 dets=  2  OK: 2 dets match, max coord error 0.117 px
+frame_0005: cand=   15 dets=  2  OK: 2 dets match, max coord error 0.053 px
+frame_0006: cand=   21 dets=  3  OK: 3 dets match, max coord error 0.045 px
+frame_0007: cand=   19 dets=  3  OK: 3 dets match, max coord error 0.056 px
+frame_0008: cand=    0 dets=  0  OK: 0 dets match, max coord error 0.000 px
+frame_0009: cand=    8 dets=  1  OK: 1 dets match, max coord error 0.039 px
+frame_0010: cand=   10 dets=  1  OK: 1 dets match, max coord error 0.050 px
+frame_0011: cand=   10 dets=  1  OK: 1 dets match, max coord error 0.060 px
+frame_0012: cand=    1 dets=  1  OK: 1 dets match, max coord error 0.028 px
+frame_0013: cand=    8 dets=  1  OK: 1 dets match, max coord error 0.051 px
+frame_0014: cand=   42 dets=  8  OK: 8 dets match, max coord error 0.062 px
+frame_0015: cand=   12 dets=  2  OK: 2 dets match, max coord error 0.059 px
+frame_0016: cand=    9 dets=  1  OK: 1 dets match, max coord error 0.084 px
+frame_0017: cand=    5 dets=  1  OK: 1 dets match, max coord error 0.034 px
+frame_0018: cand=    9 dets=  1  OK: 1 dets match, max coord error 0.049 px
+frame_0019: cand=    0 dets=  0  OK: 0 dets match, max coord error 0.000 px
+frame_0020: cand=   16 dets=  2  OK: 2 dets match, max coord error 0.045 px
+frame_0021: cand=   10 dets=  1  OK: 1 dets match, max coord error 0.056 px
+frame_0022: cand=   14 dets=  2  OK: 2 dets match, max coord error 0.120 px
+frame_0023: cand=    1 dets=  1  OK: 1 dets match, max coord error 0.062 px
+frame_0024: cand=    8 dets=  1  OK: 1 dets match, max coord error 0.063 px
+frame_0025: cand=   10 dets=  1  OK: 1 dets match, max coord error 0.103 px
+frame_0026: cand=   11 dets=  1  OK: 1 dets match, max coord error 0.120 px
+frame_0027: cand=   10 dets=  1  OK: 1 dets match, max coord error 0.060 px
+frame_0028: cand=    7 dets=  1  OK: 1 dets match, max coord error 0.103 px
+frame_0029: cand=    8 dets=  1  OK: 1 dets match, max coord error 0.060 px
+
+30/30 frames: fixed-point matches float reference

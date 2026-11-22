@@ -1,0 +1,9 @@
+model 960x960, 6 classes, 18900 anchors
+candidates passing threshold: 13  overflow: False
+fixed-point detections (pixels in 960x960 space):
+  anchor  8557 cls  5 score 0.678  [274.44, 555.38, 317.69, 585.25]
+  anchor 16580 cls  5 score 0.345  [274.06, 555.12, 364.06, 587.69]
+float reference (powerline_inference.py math):
+  cls  5 score 0.678  [274.42, 555.31, 317.69, 585.29]
+  cls  5 score 0.345  [274.03, 555.12, 364.10, 587.69]
+agreement: OK: 2 dets match, max coord error 0.062 px

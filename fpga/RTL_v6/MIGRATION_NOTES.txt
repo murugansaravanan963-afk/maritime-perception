@@ -1,0 +1,8 @@
+Maritime6 960 V6 migration
+
+Source: supplied V5 17-file RTL set.
+Model configuration comes from rtl_params.vh.
+Key target values: 960x960, 6 classes, 18,900 anchors, LUT_DEPTH=65, SCORE_Q_THR=64, COORD_BITS=14, ANCHOR_BITS=15, AREA_BITS=28, MAX_CAND=4096.
+The DFL LUT logic ROM was regenerated from the supplied 65-entry dfl_exp_lut.mem.
+The current 30-frame TB remains a full-frame/Mode-A style stress test and checks final NMS; add checkpoint instrumentation for exp_dfl/exp_decode before claiming the package pass criterion.
+Mode-B SPI is not included yet.

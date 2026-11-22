@@ -1,0 +1,21 @@
+model 960x960, 6 classes, 18900 anchors
+candidates passing threshold: 42  overflow: False
+fixed-point detections (pixels in 960x960 space):
+  anchor 16355 cls  5 score 0.886  [529.44, 480.06, 615.12, 522.75]
+  anchor 16463 cls  5 score 0.824  [296.12, 484.38, 437.56, 587.94]
+  anchor  6314 cls  5 score 0.792  [590.69, 415.69, 619.06, 425.31]
+  anchor 16350 cls  5 score 0.780  [431.25, 485.69, 531.25, 527.31]
+  anchor  6520 cls  5 score 0.573  [323.12, 433.69, 331.62, 441.06]
+  anchor  7615 cls  5 score 0.424  [414.88, 489.50, 475.81, 529.00]
+  anchor  6387 cls  5 score 0.404  [219.00, 424.00, 226.00, 429.00]
+  anchor  5953 cls  5 score 0.380  [582.69, 395.62, 592.69, 400.31]
+float reference (powerline_inference.py math):
+  cls  5 score 0.886  [529.38, 480.04, 615.19, 522.77]
+  cls  5 score 0.824  [296.12, 484.35, 437.61, 587.96]
+  cls  5 score 0.792  [590.65, 415.65, 619.07, 425.36]
+  cls  5 score 0.780  [431.24, 485.63, 531.30, 527.32]
+  cls  5 score 0.573  [323.12, 433.63, 331.66, 441.08]
+  cls  5 score 0.424  [414.83, 489.49, 475.85, 529.05]
+  cls  5 score 0.404  [218.97, 423.99, 226.03, 429.03]
+  cls  5 score 0.380  [582.63, 395.60, 592.72, 400.35]
+agreement: OK: 8 dets match, max coord error 0.062 px
